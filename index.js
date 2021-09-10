@@ -1,20 +1,22 @@
-const express = require('express')
-const { Country, Genre, StoryType, Story, User } = require('./db/mongoose.js')
+const express = require('express');
+const { Country, Genre, StoryType, Story, User } = require('./db/mongoose.js');
 
-const app = express()
-const port = 8000
+// command: ..\mongo\mongodb\bin\mongod.exe --dbpath=..\mongo\mongodb-data
 
-app.use(express.json())
+const app = express();
+const port = 8000;
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Just the default page, keep lookin\'')
+    res.send('Just the default page, keep lookin\'');
 })
 
 app.post('/add-country', (req, res) => {
-    const newCountry = new Country(req.body)
+    const newCountry = new Country(req.body);
 
     newCountry.save((err, country) => {
-        err ? res.status(500).send(err) : res.send(JSON.stringify(country))
+        err ? res.status(500).send(err) : res.send(JSON.stringify(country));
     })
 })
 
@@ -25,10 +27,10 @@ app.get('/list-countries', async (req, res) => {
 });
 
 app.post('/add-genre', (req, res) => {
-    const newGenre = new Genre(req.body)
+    const newGenre = new Genre(req.body);
 
     newGenre.save((err, genre) => {
-        err ? res.status(500).send(err) : res.send(JSON.stringify(genre))
+        err ? res.status(500).send(err) : res.send(JSON.stringify(genre));
     })
 })
 
@@ -39,10 +41,10 @@ app.get('/list-genres', async (req, res) => {
 });
 
 app.post('/add-story-type', (req, res) => {
-    const newType = new StoryType(req.body)
+    const newType = new StoryType(req.body);
 
     newType.save((err, type) => {
-        err ? res.status(500).send(err) : res.send(JSON.stringify(type))
+        err ? res.status(500).send(err) : res.send(JSON.stringify(type));
     })
 })
 
@@ -53,10 +55,10 @@ app.get('/list-story-types', async (req, res) => {
 });
 
 app.post('/add-user', (req, res) => {
-    const newUser = new User(req.body)
+    const newUser = new User(req.body);
 
     newUser.save((err, user) => {
-        err ? res.status(500).send(JSON.stringify(err)) : res.send(JSON.stringify(user))
+        err ? res.status(500).send(JSON.stringify(err)) : res.send(JSON.stringify(user));
     })
 })
 
@@ -67,10 +69,10 @@ app.get('/list-users', async (req, res) => {
 });
 
 app.post('/add-story', (req, res) => {
-    const newStory = new Story(req.body)
+    const newStory = new Story(req.body);
 
     newStory.save((err, story) => {
-        err ? res.status(500).send(err) : res.send(JSON.stringify(story))
+        err ? res.status(500).send(err) : res.send(JSON.stringify(story));
     })
 })
 
@@ -81,5 +83,5 @@ app.get('/list-stories', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`App is listening on port ${port}`)
+    console.log(`App is listening on port ${port}`);
 }) 

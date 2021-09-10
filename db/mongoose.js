@@ -1,11 +1,11 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 // todo: put me in an env!!
-mongoose.connect('mongodb://127.0.0.1:27017/written-by', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://127.0.0.1:27017/written-by', {useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection
-db.on('error', console.error.bind(console, 'connection error:'))
+db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   // we're connected!
 })
@@ -20,7 +20,7 @@ const countrySchema = new mongoose.Schema({
     languange: String,
 });
 
-const Country = mongoose.model('Country', countrySchema)
+const Country = mongoose.model('Country', countrySchema);
 
 
 // define the genre mondel
@@ -92,7 +92,7 @@ const storySchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-const Story = mongoose.model('Story', storySchema)
+const Story = mongoose.model('Story', storySchema);
 
 
 const userSchema = mongoose.Schema({
@@ -125,7 +125,7 @@ const userSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Story',
   }]
-})
+});
 
 userSchema.pre('save', async function(next) {
     const user = this;
@@ -137,6 +137,6 @@ userSchema.pre('save', async function(next) {
     next();
 })
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
 // define the user model
 module.exports = { Country, Genre, StoryType, Story, User };
